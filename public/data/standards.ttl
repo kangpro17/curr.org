@@ -1,0 +1,260 @@
+@prefix kc:   <https://example.org/kcurr/> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+##########
+# 클래스(개념) 리소스
+##########
+kc:Subject a rdfs:Class .
+kc:Domain a rdfs:Class .
+kc:GradeBand a rdfs:Class .
+kc:AchievementStandard a rdfs:Class .
+
+##########
+# 과목(Subject)
+##########
+kc:Korean  rdf:type kc:Subject ; rdfs:label "국어"@ko .
+kc:Math    rdf:type kc:Subject ; rdfs:label "수학"@ko .
+kc:Science rdf:type kc:Subject ; rdfs:label "과학"@ko .
+
+##########
+# 학년군(GradeBand)
+##########
+kc:MS_1_3 rdf:type kc:GradeBand ; rdfs:label "중학교 1~3학년군"@ko .
+
+##########
+# 영역/도메인(Domain)
+##########
+# 국어
+kc:ListenSpeak rdf:type kc:Domain ; rdfs:label "듣기·말하기"@ko .
+kc:Reading     rdf:type kc:Domain ; rdfs:label "읽기"@ko .
+
+# 수학
+kc:NumberOps   rdf:type kc:Domain ; rdfs:label "수와 연산"@ko .
+kc:ChangeRel   rdf:type kc:Domain ; rdfs:label "변화와 관계"@ko .
+kc:DataChance  rdf:type kc:Domain ; rdfs:label "자료와 가능성"@ko .
+
+# 과학(큰 범주로 통일)
+kc:Sci_Space       rdf:type kc:Domain ; rdfs:label "우주"@ko .
+kc:Sci_Earth       rdf:type kc:Domain ; rdfs:label "지권"@ko .
+kc:Sci_Life        rdf:type kc:Domain ; rdfs:label "생명"@ko .
+kc:Sci_AtmosOcean  rdf:type kc:Domain ; rdfs:label "대기와 해양"@ko .
+
+############################################################
+# 국어 10
+############################################################
+kc:AS_9KOR_01_01 rdf:type kc:AchievementStandard ;
+  kc:code "9국01-01" ;
+  kc:text "여러 사람 앞에서 말할 때 말하기 상황과 상대를 고려하며 말한다."@ko ;
+  kc:subject kc:Korean ;
+  kc:gradeBand kc:MS_1_3 ;
+  kc:domain kc:ListenSpeak .
+
+kc:AS_9KOR_01_02 rdf:type kc:AchievementStandard ;
+  kc:code "9국01-02" ;
+  kc:text "대화에서 상대의 말과 표정, 몸짓을 바탕으로 마음을 이해하며 듣는다."@ko ;
+  kc:subject kc:Korean ;
+  kc:gradeBand kc:MS_1_3 ;
+  kc:domain kc:ListenSpeak .
+
+kc:AS_9KOR_01_03 rdf:type kc:AchievementStandard ;
+  kc:code "9국01-03" ;
+  kc:text "면담에서 질문을 준비하고 상대의 대답을 고려하여 질문하며 듣는다."@ko ;
+  kc:subject kc:Korean ;
+  kc:gradeBand kc:MS_1_3 ;
+  kc:domain kc:ListenSpeak .
+
+kc:AS_9KOR_01_04 rdf:type kc:AchievementStandard ;
+  kc:code "9국01-04" ;
+  kc:text "매체 자료를 비판적으로 듣고 내용의 타당성을 판단한다."@ko ;
+  kc:subject kc:Korean ;
+  kc:gradeBand kc:MS_1_3 ;
+  kc:domain kc:ListenSpeak .
+
+kc:AS_9KOR_01_05 rdf:type kc:AchievementStandard ;
+  kc:code "9국01-05" ;
+  kc:text "토의에서 쟁점을 파악하고 근거를 들어 설득하며 말한다."@ko ;
+  kc:subject kc:Korean ;
+  kc:gradeBand kc:MS_1_3 ;
+  kc:domain kc:ListenSpeak .
+
+kc:AS_9KOR_02_01 rdf:type kc:AchievementStandard ;
+  kc:code "9국02-01" ;
+  kc:text "글의 중심 내용을 요약하며 읽는다."@ko ;
+  kc:subject kc:Korean ;
+  kc:gradeBand kc:MS_1_3 ;
+  kc:domain kc:Reading .
+
+kc:AS_9KOR_02_02 rdf:type kc:AchievementStandard ;
+  kc:code "9국02-02" ;
+  kc:text "글에 사용된 설명 방법을 파악하며 읽는다."@ko ;
+  kc:subject kc:Korean ;
+  kc:gradeBand kc:MS_1_3 ;
+  kc:domain kc:Reading .
+
+kc:AS_9KOR_02_03 rdf:type kc:AchievementStandard ;
+  kc:code "9국02-03" ;
+  kc:text "글에 드러난 관점이나 가치 판단을 파악하며 읽는다."@ko ;
+  kc:subject kc:Korean ;
+  kc:gradeBand kc:MS_1_3 ;
+  kc:domain kc:Reading .
+
+kc:AS_9KOR_02_04 rdf:type kc:AchievementStandard ;
+  kc:code "9국02-04" ;
+  kc:text "다양한 자료에서 정보를 수집하여 재구성하며 읽는다."@ko ;
+  kc:subject kc:Korean ;
+  kc:gradeBand kc:MS_1_3 ;
+  kc:domain kc:Reading .
+
+kc:AS_9KOR_02_05 rdf:type kc:AchievementStandard ;
+  kc:code "9국02-05" ;
+  kc:text "읽은 내용과 자신의 경험·생각을 연결하여 비판적으로 읽는다."@ko ;
+  kc:subject kc:Korean ;
+  kc:gradeBand kc:MS_1_3 ;
+  kc:domain kc:Reading .
+
+############################################################
+# 수학 10
+############################################################
+kc:AS_9M_01_01 rdf:type kc:AchievementStandard ;
+  kc:code "9수01-01" ;
+  kc:text "소인수분해의 뜻을 알고, 자연수를 소인수분해 할 수 있다."@ko ;
+  kc:subject kc:Math ;
+  kc:gradeBand kc:MS_1_3 ;
+  kc:domain kc:NumberOps .
+
+kc:AS_9M_01_02 rdf:type kc:AchievementStandard ;
+  kc:code "9수01-02" ;
+  kc:text "소인수분해를 이용하여 최대공약수와 최소공배수를 구할 수 있다."@ko ;
+  kc:subject kc:Math ;
+  kc:gradeBand kc:MS_1_3 ;
+  kc:domain kc:NumberOps .
+
+kc:AS_9M_02_01 rdf:type kc:AchievementStandard ;
+  kc:code "9수02-01" ;
+  kc:text "다양한 상황을 문자를 사용한 식으로 나타내어 그 유용성을 인식하고, 식의 값을 구할 수 있다."@ko ;
+  kc:subject kc:Math ;
+  kc:gradeBand kc:MS_1_3 ;
+  kc:domain kc:ChangeRel .
+
+kc:AS_9M_02_02 rdf:type kc:AchievementStandard ;
+  kc:code "9수02-02" ;
+  kc:text "일차식의 덧셈과 뺄셈의 원리를 이해하고, 그 계산을 할 수 있다."@ko ;
+  kc:subject kc:Math ;
+  kc:gradeBand kc:MS_1_3 ;
+  kc:domain kc:ChangeRel .
+
+kc:AS_9M_02_03 rdf:type kc:AchievementStandard ;
+  kc:code "9수02-03" ;
+  kc:text "방정식과 그 해의 뜻을 알고, 등식의 성질을 설명할 수 있다."@ko ;
+  kc:subject kc:Math ;
+  kc:gradeBand kc:MS_1_3 ;
+  kc:domain kc:ChangeRel .
+
+kc:AS_9M_02_04 rdf:type kc:AchievementStandard ;
+  kc:code "9수02-04" ;
+  kc:text "일차방정식을 풀 수 있고, 이를 활용하여 문제를 해결할 수 있다."@ko ;
+  kc:subject kc:Math ;
+  kc:gradeBand kc:MS_1_3 ;
+  kc:domain kc:ChangeRel .
+
+kc:AS_9M_02_05 rdf:type kc:AchievementStandard ;
+  kc:code "9수02-05" ;
+  kc:text "순서쌍과 좌표를 이해하고, 그 편리함을 인식할 수 있다."@ko ;
+  kc:subject kc:Math ;
+  kc:gradeBand kc:MS_1_3 ;
+  kc:domain kc:ChangeRel .
+
+kc:AS_9M_02_06 rdf:type kc:AchievementStandard ;
+  kc:code "9수02-06" ;
+  kc:text "다양한 상황을 그래프로 나타내고, 주어진 그래프를 해석할 수 있다."@ko ;
+  kc:subject kc:Math ;
+  kc:gradeBand kc:MS_1_3 ;
+  kc:domain kc:ChangeRel .
+
+kc:AS_9M_04_07 rdf:type kc:AchievementStandard ;
+  kc:code "9수04-07" ;
+  kc:text "분산과 표준편차를 구하고 자료의 분포를 설명할 수 있다."@ko ;
+  kc:subject kc:Math ;
+  kc:gradeBand kc:MS_1_3 ;
+  kc:domain kc:DataChance .
+
+kc:AS_9M_04_08 rdf:type kc:AchievementStandard ;
+  kc:code "9수04-08" ;
+  kc:text "공학 도구를 이용하여 자료를 상자그림으로 나타내고 분포를 비교할 수 있다."@ko ;
+  kc:subject kc:Math ;
+  kc:gradeBand kc:MS_1_3 ;
+  kc:domain kc:DataChance .
+
+############################################################
+# 과학 10
+############################################################
+kc:AS_9S_07_02 rdf:type kc:AchievementStandard ;
+  kc:code "9과07-02" ;
+  kc:text "태양의 표면과 대기에서 일어나는 현상을 알고, 태양의 활동이 지구에 미치는 영향을 추론할 수 있다."@ko ;
+  kc:subject kc:Science ;
+  kc:gradeBand kc:MS_1_3 ;
+  kc:domain kc:Sci_Space .
+
+kc:AS_9S_07_03 rdf:type kc:AchievementStandard ;
+  kc:code "9과07-03" ;
+  kc:text "지구 자전에 의한 천체의 겉보기 운동과 지구 공전에 의한 별자리 변화를 이해하고, 밤하늘 천체에 호기심을 가진다."@ko ;
+  kc:subject kc:Science ;
+  kc:gradeBand kc:MS_1_3 ;
+  kc:domain kc:Sci_Space .
+
+kc:AS_9S_07_04 rdf:type kc:AchievementStandard ;
+  kc:code "9과07-04" ;
+  kc:text "달을 관측하여 달의 위상변화 원리를 이해하고, 일식과 월식을 설명할 수 있다."@ko ;
+  kc:subject kc:Science ;
+  kc:gradeBand kc:MS_1_3 ;
+  kc:domain kc:Sci_Space .
+
+kc:AS_9S_09_01 rdf:type kc:AchievementStandard ;
+  kc:code "9과09-01" ;
+  kc:text "지구계의 구성 요소를 알고, 지권의 층상 구조와 그 특징을 조사⋅발표할 수 있다."@ko ;
+  kc:subject kc:Science ;
+  kc:gradeBand kc:MS_1_3 ;
+  kc:domain kc:Sci_Earth .
+
+kc:AS_9S_09_02 rdf:type kc:AchievementStandard ;
+  kc:code "9과09-02" ;
+  kc:text "조암 광물의 주요 특성을 관찰하고, 암석과 광물의 활용 방안 및 자원으로서 가치에 대해 조사할 수 있다."@ko ;
+  kc:subject kc:Science ;
+  kc:gradeBand kc:MS_1_3 ;
+  kc:domain kc:Sci_Earth .
+
+kc:AS_9S_09_03 rdf:type kc:AchievementStandard ;
+  kc:code "9과09-03" ;
+  kc:text "지각을 이루는 암석을 생성 과정에 따라 분류하고, 암석의 순환 과정을 설명할 수 있다."@ko ;
+  kc:subject kc:Science ;
+  kc:gradeBand kc:MS_1_3 ;
+  kc:domain kc:Sci_Earth .
+
+kc:AS_9S_12_02 rdf:type kc:AchievementStandard ;
+  kc:code "9과12-02" ;
+  kc:text "식물의 호흡과 광합성의 관계를 이해하고, 호흡과 광합성 과정에서 출입하는 에너지와 물질의 변화를 분석할 수 있다."@ko ;
+  kc:subject kc:Science ;
+  kc:gradeBand kc:MS_1_3 ;
+  kc:domain kc:Sci_Life .
+
+kc:AS_9S_12_03 rdf:type kc:AchievementStandard ;
+  kc:code "9과12-03" ;
+  kc:text "광합성 산물의 저장과 이용 과정을 이해하고, 모형으로 설명할 수 있다."@ko ;
+  kc:subject kc:Science ;
+  kc:gradeBand kc:MS_1_3 ;
+  kc:domain kc:Sci_Life .
+
+kc:AS_9S_17_01 rdf:type kc:AchievementStandard ;
+  kc:code "9과17-01" ;
+  kc:text "지구 대기권을 4개 권역으로 구분하며, 온실효과와 지구온난화를 복사 평형의 관점으로 설명할 수 있다."@ko ;
+  kc:subject kc:Science ;
+  kc:gradeBand kc:MS_1_3 ;
+  kc:domain kc:Sci_AtmosOcean .
+
+kc:AS_9S_17_02 rdf:type kc:AchievementStandard ;
+  kc:code "9과17-02" ;
+  kc:text "대기 대순환에서 위도별 바람의 특성을 파악하고, 대기 대순환의 역할을 설명할 수 있다."@ko ;
+  kc:subject kc:Science ;
+  kc:gradeBand kc:MS_1_3 ;
+  kc:domain kc:Sci_AtmosOcean .
