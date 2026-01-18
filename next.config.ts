@@ -6,7 +6,6 @@ const nextConfig = {
     unoptimized: true,
   },
   trailingSlash: true,
-  // Update this to match your GitHub repository name if it differs
   basePath: '/curr.org',
   assetPrefix: '/curr.org',
   eslint: {
