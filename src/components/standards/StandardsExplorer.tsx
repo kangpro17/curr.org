@@ -156,7 +156,7 @@ export default function StandardsExplorer({ standards }: StandardsExplorerProps)
                     {filteredStandards.map((s) => (
                         <Link
                             key={s.id}
-                            href={`/standard/${encodeURIComponent(s.code)}`}
+                            href={`/standard/${s.code}`}
                             className="group bg-white p-8 rounded-[2.5rem] border border-gray-100 hover:border-indigo-200 hover:shadow-2xl hover:shadow-indigo-500/5 transition-all flex flex-col items-start gap-4 relative overflow-hidden"
                         >
                             <div className="absolute top-0 right-0 w-32 h-32 bg-indigo-50/30 rounded-full -mr-16 -mt-16 transition-transform group-hover:scale-125" />

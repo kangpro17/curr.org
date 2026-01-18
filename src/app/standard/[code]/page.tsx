@@ -14,7 +14,7 @@ export const dynamicParams = false;
 export async function generateStaticParams() {
     const standards = await getStandards();
     return standards.map((s) => ({
-        code: encodeURIComponent(s.code),
+        code: s.code,
     }));
 }
 
