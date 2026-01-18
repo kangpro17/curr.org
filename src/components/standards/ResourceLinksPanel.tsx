@@ -102,38 +102,38 @@ export default function ResourceLinksPanel({ standardCode }: ResourceLinksPanelP
 
     return (
         <div className="space-y-10">
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
-                <div className="flex items-center gap-4">
-                    <div className="w-10 h-10 bg-indigo-50 rounded-xl flex items-center justify-center">
-                        <Link2 className="h-5 w-5 text-indigo-500" />
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-8 border-b border-[#D4AF37]/10 pb-10">
+                <div className="flex items-center gap-5">
+                    <div className="w-14 h-14 bg-[#002147] rounded-sm flex items-center justify-center border border-[#D4AF37]/30 shadow-lg">
+                        <Link2 className="h-6 w-6 text-[#D4AF37]" />
                     </div>
                     <div>
-                        <h3 className="text-xl font-black text-gray-900 tracking-tight">관련 자료</h3>
-                        <p className="text-sm text-gray-400 font-medium tracking-tight">성취기준과 연결된 추천 학습 리소스입니다.</p>
+                        <h3 className="text-2xl font-classic text-[#002147] tracking-widest">CURATED SCHOLARSHIP</h3>
+                        <p className="text-sm text-[#002147]/50 font-serif italic">Scholarly resources assigned to this curriculum benchmark.</p>
                     </div>
                 </div>
 
                 {/* Category Filter Chips */}
                 {categories.length > 0 && (
-                    <div className="flex items-center gap-3 overflow-x-auto pb-1 scrollbar-hide">
-                        <Filter className="h-4 w-4 text-gray-300 shrink-0" />
+                    <div className="flex items-center gap-4 overflow-x-auto pb-1 scrollbar-hide">
+                        <Filter className="h-4 w-4 text-[#D4AF37] shrink-0" />
                         <div className="flex gap-2">
                             <button
                                 onClick={() => setActiveCategory('all')}
-                                className={`px-4 py-2 rounded-xl text-xs font-black transition-all whitespace-nowrap shadow-sm ${activeCategory === 'all'
-                                    ? 'bg-indigo-600 text-white border-transparent'
-                                    : 'bg-white text-gray-400 border border-gray-100 hover:border-gray-200'
+                                className={`px-5 py-2.5 rounded-sm text-[10px] font-black uppercase tracking-[0.2em] transition-all shadow-sm ${activeCategory === 'all'
+                                    ? 'bg-[#002147] text-[#D4AF37] border-transparent'
+                                    : 'bg-white text-[#002147]/40 border border-[#D4AF37]/10 hover:border-[#D4AF37]'
                                     }`}
                             >
-                                전체보기
+                                SHOW ALL
                             </button>
                             {categories.map(cat => (
                                 <button
                                     key={cat}
                                     onClick={() => setActiveCategory(cat)}
-                                    className={`px-4 py-2 rounded-xl text-xs font-black transition-all whitespace-nowrap shadow-sm ${activeCategory === cat
-                                        ? 'bg-indigo-600 text-white border-transparent'
-                                        : 'bg-white text-gray-400 border border-gray-100 hover:border-gray-200'
+                                    className={`px-5 py-2.5 rounded-sm text-[10px] font-black uppercase tracking-[0.2em] transition-all shadow-sm ${activeCategory === cat
+                                        ? 'bg-[#002147] text-[#D4AF37] border-transparent'
+                                        : 'bg-white text-[#002147]/40 border border-[#D4AF37]/10 hover:border-[#D4AF37]'
                                         }`}
                                 >
                                     {cat}
@@ -145,42 +145,40 @@ export default function ResourceLinksPanel({ standardCode }: ResourceLinksPanelP
             </div>
 
             {/* Links Cards Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 {filteredLinks.map((link) => (
                     <a
                         key={link.id}
                         href={link.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="group bg-white p-8 rounded-[2rem] border border-gray-100 hover:border-indigo-200 hover:shadow-2xl hover:shadow-indigo-500/5 transition-all flex flex-col justify-between relative overflow-hidden"
+                        className="group bg-[#FDFCF8] p-10 rounded-sm border-l-4 border-l-[#D4AF37] border-y border-r border-[#D4AF37]/10 hover:bg-[#002147] transition-all flex flex-col justify-between relative overflow-hidden shadow-sm hover:shadow-2xl"
                     >
-                        <div className="absolute top-0 right-0 w-24 h-24 bg-indigo-50/20 rounded-full -mr-12 -mt-12 transition-transform group-hover:scale-125" />
-
-                        <div className="space-y-4 relative z-10">
+                        <div className="space-y-6 relative z-10">
                             <div className="flex justify-between items-start gap-4">
-                                <div className="space-y-3">
-                                    <div className="flex items-center gap-2">
-                                        <div className="p-2 bg-gray-50 rounded-lg text-indigo-400 group-hover:bg-indigo-600 group-hover:text-white transition-all">
+                                <div className="space-y-4">
+                                    <div className="flex items-center gap-3">
+                                        <div className="p-2 bg-[#002147] text-[#D4AF37] rounded-xs group-hover:bg-white/10 transition-all">
                                             {getIcon(link.category)}
                                         </div>
-                                        <span className="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em]">{link.category || '기타 자료'}</span>
+                                        <span className="text-[9px] font-black text-[#002147]/40 group-hover:text-[#D4AF37] uppercase tracking-[0.3em] font-classic">{link.category || 'GENERAL RESOURCE'}</span>
                                     </div>
-                                    <h5 className="text-xl font-black text-gray-900 leading-tight group-hover:text-indigo-600 transition-colors">
+                                    <h5 className="text-2xl font-serif font-bold text-[#002147] leading-tight group-hover:text-white transition-colors">
                                         {link.title}
                                     </h5>
                                 </div>
-                                <div className="w-10 h-10 bg-gray-50 rounded-full flex items-center justify-center text-gray-200 transition-colors group-hover:bg-indigo-50 group-hover:text-indigo-400">
+                                <div className="w-12 h-12 border border-[#D4AF37]/20 flex items-center justify-center text-[#D4AF37] group-hover:border-white/20 group-hover:text-white transition-all">
                                     <ExternalLink className="h-5 w-5" />
                                 </div>
                             </div>
                         </div>
 
-                        <div className="flex flex-wrap items-center gap-3 pt-6 mt-6 border-t border-gray-50 relative z-10">
+                        <div className="flex flex-wrap items-center gap-3 pt-8 mt-8 border-t border-[#D4AF37]/10 group-hover:border-white/10 relative z-10">
                             {link.org && (
-                                <span className="text-xs font-black text-indigo-400 bg-indigo-50/50 px-3 py-1 rounded-lg">{link.org}</span>
+                                <span className="text-[10px] font-black text-[#D4AF37] bg-[#002147]/5 group-hover:bg-white/5 px-4 py-1.5 rounded-sm border border-[#D4AF37]/20 uppercase tracking-widest">{link.org}</span>
                             )}
                             {link.tags && link.tags.map(tag => (
-                                <span key={tag} className="text-[10px] font-bold text-gray-400 px-3 py-1 bg-gray-50 rounded-lg">#{tag}</span>
+                                <span key={tag} className="text-[9px] font-bold text-[#002147]/30 group-hover:text-white/30 px-3 py-1 bg-white/50 group-hover:bg-white/5 rounded-sm uppercase tracking-tighter">#{tag}</span>
                             ))}
                         </div>
                     </a>

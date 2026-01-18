@@ -69,14 +69,14 @@ export default function StandardsExplorer({ standards }: StandardsExplorerProps)
                 <div className="bg-white/80 backdrop-blur-xl p-4 rounded-[2rem] border border-gray-100 shadow-xl shadow-indigo-500/5 space-y-4">
                     <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
                         {/* Subject Tabs */}
-                        <div className="flex bg-gray-50/50 p-1 rounded-2xl border border-gray-100 self-start">
+                        <div className="flex bg-[#F1F0E8] p-1.5 rounded-sm border border-[#D4AF37]/20 self-start shadow-inner">
                             {subjects.map(sub => (
                                 <button
                                     key={sub}
                                     onClick={() => setActiveSubject(sub)}
-                                    className={`px-8 py-3 rounded-xl text-sm font-black transition-all ${activeSubject === sub
-                                        ? 'bg-white text-indigo-600 shadow-lg shadow-indigo-500/5 ring-1 ring-gray-100'
-                                        : 'text-gray-400 hover:text-gray-600'
+                                    className={`px-8 py-2.5 rounded-sm text-[10px] font-black tracking-[0.2em] uppercase transition-all ${activeSubject === sub
+                                        ? 'bg-[#002147] text-[#D4AF37] shadow-lg'
+                                        : 'text-[#002147]/40 hover:text-[#002147] hover:bg-white/50'
                                         }`}
                                 >
                                     {sub}
@@ -86,18 +86,18 @@ export default function StandardsExplorer({ standards }: StandardsExplorerProps)
 
                         {/* Search Bar */}
                         <div className="relative flex-1 max-w-xl group">
-                            <Search className="absolute left-5 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-300 group-focus-within:text-indigo-400 transition-colors" />
+                            <Search className="absolute left-5 top-1/2 -translate-y-1/2 h-4 w-4 text-[#D4AF37]/50 group-focus-within:text-[#D4AF37] transition-colors" />
                             <input
                                 type="text"
-                                placeholder="성취기준 코드 또는 내용으로 바로 검색..."
+                                placeholder="SEARCH ARCHIVES..."
                                 value={searchQuery}
                                 onChange={(e) => setSearchQuery(e.target.value)}
-                                className="w-full pl-12 pr-12 py-4 bg-gray-50/50 rounded-2xl border border-transparent focus:border-indigo-100 focus:bg-white outline-none text-sm font-bold text-gray-900 transition-all placeholder:text-gray-300"
+                                className="w-full pl-12 pr-12 py-4 bg-[#F1F0E8] rounded-sm border border-transparent focus:border-[#D4AF37]/30 focus:bg-white outline-none text-xs font-bold text-[#002147] transition-all placeholder:text-[#002147]/20 tracking-widest uppercase"
                             />
                             {searchQuery && (
                                 <button
                                     onClick={handleReset}
-                                    className="absolute right-4 top-1/2 -translate-y-1/2 p-1 hover:bg-gray-100 rounded-full text-gray-300 transition-all"
+                                    className="absolute right-4 top-1/2 -translate-y-1/2 p-1 hover:bg-red-50 rounded-full text-[#D4AF37] transition-all"
                                 >
                                     <X className="h-4 w-4" />
                                 </button>
@@ -143,8 +143,8 @@ export default function StandardsExplorer({ standards }: StandardsExplorerProps)
                             </div>
                         </div>
 
-                        <p className="text-[10px] font-black text-gray-300 uppercase tracking-[0.2em]">
-                            Total {filteredStandards.length}
+                        <p className="text-[10px] font-black text-[#D4AF37] uppercase tracking-[0.3em] font-classic">
+                            ARCHIVE COUNT: {filteredStandards.length}
                         </p>
                     </div>
                 </div>
@@ -157,30 +157,30 @@ export default function StandardsExplorer({ standards }: StandardsExplorerProps)
                         <Link
                             key={s.id}
                             href={`/standard/${s.code}`}
-                            className="group bg-white p-8 rounded-[2.5rem] border border-gray-100 hover:border-indigo-200 hover:shadow-2xl hover:shadow-indigo-500/5 transition-all flex flex-col items-start gap-4 relative overflow-hidden"
+                            className="group bg-white p-10 rounded-sm border border-[#D4AF37]/20 hover:border-[#D4AF37] hover:shadow-[0_20px_50px_rgba(212,175,55,0.1)] transition-all flex flex-col items-start gap-6 relative overflow-hidden"
                         >
-                            <div className="absolute top-0 right-0 w-32 h-32 bg-indigo-50/30 rounded-full -mr-16 -mt-16 transition-transform group-hover:scale-125" />
+                            <div className="absolute top-0 right-0 w-32 h-32 bg-[#D4AF37]/5 rounded-full -mr-16 -mt-16 transition-transform group-hover:scale-150" />
 
-                            <div className="w-12 h-12 bg-gray-50 rounded-2xl flex items-center justify-center transition-colors group-hover:bg-indigo-50 relative z-10">
-                                <BookOpen className="h-6 w-6 text-gray-300 group-hover:text-indigo-400" />
+                            <div className="w-14 h-14 bg-[#F1F0E8] border border-[#D4AF37]/10 rounded-sm flex items-center justify-center transition-colors group-hover:bg-[#002147] relative z-10">
+                                <BookOpen className="h-6 w-6 text-[#D4AF37] group-hover:text-white transition-colors" />
                             </div>
 
-                            <div className="space-y-1 relative z-10">
-                                <h4 className="text-xl font-black text-indigo-600 tracking-tighter flex items-center gap-2">
+                            <div className="space-y-3 relative z-10">
+                                <h4 className="text-2xl font-classic text-[#002147] tracking-[0.1em] flex items-center gap-2">
                                     {s.code}
-                                    <ChevronRight className="h-4 w-4 text-gray-200 group-hover:text-indigo-300 transition-transform group-hover:translate-x-1" />
+                                    <ChevronRight className="h-4 w-4 text-[#D4AF37] group-hover:translate-x-1 transition-transform" />
                                 </h4>
-                                <p className="text-gray-800 font-bold leading-relaxed line-clamp-3 h-[4.5rem] overflow-hidden">
+                                <p className="text-[#002147]/80 font-serif text-lg leading-relaxed line-clamp-3 h-[5.5rem] overflow-hidden">
                                     {s.content}
                                 </p>
                             </div>
 
-                            <div className="flex flex-wrap gap-2 pt-4 mt-auto relative z-10">
-                                <span className="px-3 py-1.5 bg-gray-50 text-gray-400 text-[10px] font-black rounded-xl uppercase tracking-wider flex items-center gap-1.5">
-                                    <div className="w-1 h-1 rounded-full bg-gray-200" /> {s.subject}
+                            <div className="flex flex-wrap gap-2 pt-6 mt-auto border-t border-[#D4AF37]/10 w-full relative z-10">
+                                <span className="px-3 py-1 bg-[#002147] text-[#D4AF37] text-[9px] font-black rounded-xs uppercase tracking-widest">
+                                    {s.subject}
                                 </span>
-                                <span className="px-3 py-1.5 bg-indigo-50 text-indigo-400 text-[10px] font-black rounded-xl uppercase tracking-wider flex items-center gap-1.5">
-                                    <div className="w-1 h-1 rounded-full bg-indigo-200" /> {s.grade_level}
+                                <span className="px-3 py-1 bg-[#F1F0E8] text-[#002147] text-[9px] font-black rounded-xs border border-[#D4AF37]/20 uppercase tracking-widest">
+                                    {s.grade_level}
                                 </span>
                             </div>
                         </Link>
