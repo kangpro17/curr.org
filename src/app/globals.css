@@ -1,39 +1,40 @@
 @import "tailwindcss";
 
 :root {
-  --background: #FDFCF8;
-  /* Antique Cream */
-  --foreground: #002115;
-  /* Deep Green Dark */
+  --background: #F8F9FA;
+  /* Light Grey Background */
+  --foreground: #2D3748;
+  /* Dark Grey Text */
 
-  /* Aristocratic Palette - British Green Focus */
-  --british-racing-green: #004225;
-  --british-green-light: #005c34;
-  --british-green-soft: #f0f7f3;
-  --gold-accent: #D4AF37;
-  --brass-shadow: rgba(212, 175, 55, 0.15);
-  --oxford-blue: #002147;
+  /* Cute & Chunky Korean Theme - Purple & Yellow */
+  --purple-start: #6A11CB;
+  --purple-end: #2575FC;
+  --yellow-accent: #FFD700;
+  --yellow-light: #FFF4CC;
+  --pink-soft: #F3E8FF;
+  --card-bg: #FFFFFF;
+  --text-primary: #2D3748;
+  --text-secondary: #718096;
+  --border-light: #E2E8F0;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-  --font-serif: "Playfair Display", "Noto Serif KR", serif;
-  --font-classic: "Cinzel", serif;
+  --font-sans: "Pretendard", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans KR", sans-serif;
+  --font-rounded: "Pretendard", "Nanum Gothic", sans-serif;
 
-  --color-british-green: var(--british-racing-green);
-  --color-british-green-light: var(--british-green-light);
-  --color-gold: var(--gold-accent);
+  --color-purple: var(--purple-start);
+  --color-yellow: var(--yellow-accent);
+  --color-pink: var(--pink-soft);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: ui-sans-serif, system-ui, sans-serif;
-  font-size: 1.125rem;
-  /* Increased base size */
-  line-height: 1.7;
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.6;
 }
 
 h1,
@@ -42,35 +43,106 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: var(--font-serif);
+  font-family: var(--font-rounded);
   font-weight: 800;
-  letter-spacing: -0.01em;
-  color: var(--british-racing-green);
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
 }
 
 h1 {
-  font-size: 3.5rem;
+  font-size: 3rem;
+  font-weight: 900;
 }
 
 h2 {
-  font-size: 2.75rem;
+  font-size: 2.5rem;
+  font-weight: 800;
 }
 
 h3 {
   font-size: 2rem;
+  font-weight: 800;
 }
 
+/* Cute & Chunky Utilities */
+.chunky-card {
+  border-radius: 24px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  background: var(--card-bg);
+}
+
+.chunky-button {
+  border-radius: 50px;
+  padding: 14px 32px;
+  font-weight: 700;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+}
+
+.chunky-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.purple-gradient {
+  background: linear-gradient(135deg, var(--purple-start) 0%, var(--purple-end) 100%);
+}
+
+.yellow-button {
+  background: var(--yellow-accent);
+  color: var(--text-primary);
+}
+
+.yellow-button:hover {
+  background: #FFC700;
+}
+
+.pink-bg {
+  background: var(--pink-soft);
+}
+
+/* Large Border Radius for Everything */
+* {
+  border-radius: inherit;
+}
+
+input,
+textarea,
+select {
+  border-radius: 16px;
+}
+
+button {
+  border-radius: 50px;
+}
+
+.card {
+  border-radius: 24px;
+}
+
+/* Emoji Support */
+.emoji {
+  font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif;
+}
+
+/* Smooth Transitions */
+* {
+  transition: border-radius 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Remove old aristocratic styles */
 .aristocratic-border {
-  border: 1px solid rgba(0, 66, 37, 0.15);
-  box-shadow: 0 20px 40px rgba(0, 66, 37, 0.05);
+  border: 1px solid var(--border-light);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  border-radius: 24px;
 }
 
 .british-green-gradient {
-  background: linear-gradient(135deg, #004225 0%, #002115 100%);
+  background: linear-gradient(135deg, var(--purple-start) 0%, var(--purple-end) 100%);
 }
 
 .gold-gradient-text {
-  background-image: linear-gradient(to right, #D4AF37, #F9E79F, #D4AF37);
+  background-image: linear-gradient(to right, var(--yellow-accent), #FFE55C, var(--yellow-accent));
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
