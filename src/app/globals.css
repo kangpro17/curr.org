@@ -1,51 +1,77 @@
 @import "tailwindcss";
 
 :root {
-  --background: #FDFCF8; /* Antique Cream */
-  --foreground: #0A1128; /* Midnight Blue */
-  
-  /* Aristocratic Palette */
-  --oxford-blue: #002147;
+  --background: #FDFCF8;
+  /* Antique Cream */
+  --foreground: #002115;
+  /* Deep Green Dark */
+
+  /* Aristocratic Palette - British Green Focus */
   --british-racing-green: #004225;
-  --royal-burgundy: #800020;
+  --british-green-light: #005c34;
+  --british-green-soft: #f0f7f3;
   --gold-accent: #D4AF37;
   --brass-shadow: rgba(212, 175, 55, 0.15);
+  --oxford-blue: #002147;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui;
-  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular;
-  --font-serif: var(--font-playfair), serif;
-  --font-classic: var(--font-cinzel), serif;
-  
-  --color-oxford: var(--oxford-blue);
-  --color-racing-green: var(--british-racing-green);
-  --color-burgundy: var(--royal-burgundy);
+  --font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  --font-serif: "Playfair Display", "Noto Serif KR", serif;
+  --font-classic: "Cinzel", serif;
+
+  --color-british-green: var(--british-racing-green);
+  --color-british-green-light: var(--british-green-light);
   --color-gold: var(--gold-accent);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-geist-sans), sans-serif;
-  line-height: 1.6;
+  font-family: ui-sans-serif, system-ui, sans-serif;
+  font-size: 1.125rem;
+  /* Increased base size */
+  line-height: 1.7;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-playfair), serif;
-  font-weight: 700;
-  letter-spacing: -0.02em;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-serif);
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  color: var(--british-racing-green);
+}
+
+h1 {
+  font-size: 3.5rem;
+}
+
+h2 {
+  font-size: 2.75rem;
+}
+
+h3 {
+  font-size: 2rem;
 }
 
 .aristocratic-border {
-  border: 1px solid rgba(212, 175, 55, 0.3);
-  box-shadow: 0 10px 30px var(--brass-shadow);
+  border: 1px solid rgba(0, 66, 37, 0.15);
+  box-shadow: 0 20px 40px rgba(0, 66, 37, 0.05);
+}
+
+.british-green-gradient {
+  background: linear-gradient(135deg, #004225 0%, #002115 100%);
 }
 
 .gold-gradient-text {
-  background: linear-gradient(135deg, #D4AF37 0%, #AF8C26 100%);
+  background-image: linear-gradient(to right, #D4AF37, #F9E79F, #D4AF37);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }

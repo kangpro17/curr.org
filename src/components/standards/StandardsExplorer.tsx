@@ -69,14 +69,14 @@ export default function StandardsExplorer({ standards }: StandardsExplorerProps)
                 <div className="bg-white/80 backdrop-blur-xl p-4 rounded-[2rem] border border-gray-100 shadow-xl shadow-indigo-500/5 space-y-4">
                     <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
                         {/* Subject Tabs */}
-                        <div className="flex bg-[#F1F0E8] p-1.5 rounded-sm border border-[#D4AF37]/20 self-start shadow-inner">
+                        <div className="flex bg-[#f0f7f3] p-2 rounded-lg border border-[#004225]/10 self-start shadow-inner">
                             {subjects.map(sub => (
                                 <button
                                     key={sub}
                                     onClick={() => setActiveSubject(sub)}
-                                    className={`px-8 py-2.5 rounded-sm text-[10px] font-black tracking-[0.2em] uppercase transition-all ${activeSubject === sub
-                                        ? 'bg-[#002147] text-[#D4AF37] shadow-lg'
-                                        : 'text-[#002147]/40 hover:text-[#002147] hover:bg-white/50'
+                                    className={`px-10 py-3 rounded-md text-[11px] font-black tracking-[0.2em] uppercase transition-all ${activeSubject === sub
+                                        ? 'bg-[#004225] text-white shadow-xl'
+                                        : 'text-[#004225]/40 hover:text-[#004225] hover:bg-white/50'
                                         }`}
                                 >
                                     {sub}
@@ -86,65 +86,34 @@ export default function StandardsExplorer({ standards }: StandardsExplorerProps)
 
                         {/* Search Bar */}
                         <div className="relative flex-1 max-w-xl group">
-                            <Search className="absolute left-5 top-1/2 -translate-y-1/2 h-4 w-4 text-[#D4AF37]/50 group-focus-within:text-[#D4AF37] transition-colors" />
+                            <Search className="absolute left-6 top-1/2 -translate-y-1/2 h-5 w-5 text-[#004225]/30 group-focus-within:text-[#004225] transition-colors" />
                             <input
                                 type="text"
-                                placeholder="SEARCH ARCHIVES..."
+                                placeholder="성취기준 검색..."
                                 value={searchQuery}
                                 onChange={(e) => setSearchQuery(e.target.value)}
-                                className="w-full pl-12 pr-12 py-4 bg-[#F1F0E8] rounded-sm border border-transparent focus:border-[#D4AF37]/30 focus:bg-white outline-none text-xs font-bold text-[#002147] transition-all placeholder:text-[#002147]/20 tracking-widest uppercase"
+                                className="w-full pl-14 pr-12 py-5 bg-[#f0f7f3] rounded-lg border border-transparent focus:border-[#004225]/20 focus:bg-white outline-none text-sm font-bold text-[#004225] transition-all placeholder:text-[#004225]/20 tracking-wide"
                             />
-                            {searchQuery && (
-                                <button
-                                    onClick={handleReset}
-                                    className="absolute right-4 top-1/2 -translate-y-1/2 p-1 hover:bg-red-50 rounded-full text-[#D4AF37] transition-all"
-                                >
-                                    <X className="h-4 w-4" />
-                                </button>
-                            )}
                         </div>
                     </div>
 
                     {/* Filter Bar (Dropdown and Status) */}
-                    <div className="flex items-center justify-between pt-4 border-t border-gray-50">
-                        <div className="flex items-center gap-6">
+                    <div className="flex items-center justify-between pt-6 border-t border-[#004225]/5">
+                        <div className="flex items-center gap-8">
                             <div className="relative">
                                 <button
                                     onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                                    className="flex items-center gap-2 px-4 py-2 bg-white rounded-xl border border-gray-100 text-xs font-black text-gray-600 hover:border-indigo-200 transition-all shadow-sm"
+                                    className="flex items-center gap-3 px-6 py-3 bg-white rounded-lg border border-[#004225]/10 text-xs font-black text-[#004225]/60 hover:border-[#004225]/30 transition-all shadow-sm"
                                 >
-                                    <Layers className="h-4 w-4 text-indigo-400" />
-                                    <span>{selectedCategory === 'all' ? '전체 영역' : selectedCategory}</span>
+                                    <Layers className="h-4 w-4 text-[#004225]/40" />
+                                    <span>{selectedCategory === 'all' ? '전체 영역 필터' : selectedCategory}</span>
                                     <ChevronDown className={`h-3 w-3 transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`} />
                                 </button>
-
-                                {isDropdownOpen && (
-                                    <>
-                                        <div className="fixed inset-0 z-40" onClick={() => setIsDropdownOpen(false)} />
-                                        <div className="absolute top-full left-0 mt-2 w-64 bg-white rounded-2xl border border-gray-100 shadow-2xl z-50 p-2 animate-in fade-in slide-in-from-top-2">
-                                            <button
-                                                onClick={() => { setSelectedCategory('all'); setIsDropdownOpen(false); }}
-                                                className={`w-full text-left px-4 py-3 rounded-xl text-xs font-bold transition-all ${selectedCategory === 'all' ? 'bg-indigo-50 text-indigo-600' : 'text-gray-400 hover:bg-gray-50 hover:text-gray-900'}`}
-                                            >
-                                                전체 영역 (All)
-                                            </button>
-                                            {categories.map(cat => (
-                                                <button
-                                                    key={cat}
-                                                    onClick={() => { setSelectedCategory(cat); setIsDropdownOpen(false); }}
-                                                    className={`w-full text-left px-4 py-3 rounded-xl text-xs font-bold transition-all ${selectedCategory === cat ? 'bg-indigo-50 text-indigo-600' : 'text-gray-400 hover:bg-gray-50 hover:text-gray-900'}`}
-                                                >
-                                                    {cat}
-                                                </button>
-                                            ))}
-                                        </div>
-                                    </>
-                                )}
                             </div>
                         </div>
 
-                        <p className="text-[10px] font-black text-[#D4AF37] uppercase tracking-[0.3em] font-classic">
-                            ARCHIVE COUNT: {filteredStandards.length}
+                        <p className="text-[11px] font-black text-[#004225] uppercase tracking-[0.3em] font-serif">
+                            FOUND ARCHIVES: {filteredStandards.length}
                         </p>
                     </div>
                 </div>
@@ -152,35 +121,38 @@ export default function StandardsExplorer({ standards }: StandardsExplorerProps)
 
             {/* Content Area */}
             {filteredStandards.length > 0 ? (
-                <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
                     {filteredStandards.map((s) => (
                         <Link
                             key={s.id}
                             href={`/standard/${s.code}`}
-                            className="group bg-white p-10 rounded-sm border border-[#D4AF37]/20 hover:border-[#D4AF37] hover:shadow-[0_20px_50px_rgba(212,175,55,0.1)] transition-all flex flex-col items-start gap-6 relative overflow-hidden"
+                            className="group bg-white p-12 rounded-lg border border-[#004225]/10 hover:border-[#004225] hover:shadow-2xl transition-all flex flex-col items-start gap-8 relative overflow-hidden aristocratic-border"
                         >
-                            <div className="absolute top-0 right-0 w-32 h-32 bg-[#D4AF37]/5 rounded-full -mr-16 -mt-16 transition-transform group-hover:scale-150" />
+                            <div className="absolute top-0 right-0 w-40 h-40 bg-[#004225]/5 rounded-full -mr-20 -mt-20 transition-all group-hover:scale-110 group-hover:bg-[#004225]/10" />
 
-                            <div className="w-14 h-14 bg-[#F1F0E8] border border-[#D4AF37]/10 rounded-sm flex items-center justify-center transition-colors group-hover:bg-[#002147] relative z-10">
-                                <BookOpen className="h-6 w-6 text-[#D4AF37] group-hover:text-white transition-colors" />
+                            <div className="w-16 h-16 bg-[#f0f7f3] border border-[#004225]/5 rounded-lg flex items-center justify-center transition-all group-hover:bg-[#004225] relative z-10">
+                                <BookOpen className="h-8 w-8 text-[#004225] group-hover:text-white transition-colors" />
                             </div>
 
-                            <div className="space-y-3 relative z-10">
-                                <h4 className="text-2xl font-classic text-[#002147] tracking-[0.1em] flex items-center gap-2">
+                            <div className="space-y-4 relative z-10">
+                                <h4 className="text-3xl font-serif font-black text-[#004225] tracking-tight flex items-center gap-3">
                                     {s.code}
-                                    <ChevronRight className="h-4 w-4 text-[#D4AF37] group-hover:translate-x-1 transition-transform" />
+                                    <ChevronRight className="h-5 w-5 text-[#D4AF37] group-hover:translate-x-1 transition-transform" />
                                 </h4>
-                                <p className="text-[#002147]/80 font-serif text-lg leading-relaxed line-clamp-3 h-[5.5rem] overflow-hidden">
+                                <p className="text-[#002115]/80 font-serif text-xl leading-relaxed line-clamp-3 h-[6.5rem] overflow-hidden">
                                     {s.content}
                                 </p>
                             </div>
 
-                            <div className="flex flex-wrap gap-2 pt-6 mt-auto border-t border-[#D4AF37]/10 w-full relative z-10">
-                                <span className="px-3 py-1 bg-[#002147] text-[#D4AF37] text-[9px] font-black rounded-xs uppercase tracking-widest">
+                            <div className="flex flex-wrap gap-3 pt-8 mt-auto border-t border-[#004225]/5 w-full relative z-10">
+                                <span className="px-4 py-2 bg-[#004225] text-white text-[10px] font-black rounded-sm uppercase tracking-widest">
                                     {s.subject}
                                 </span>
-                                <span className="px-3 py-1 bg-[#F1F0E8] text-[#002147] text-[9px] font-black rounded-xs border border-[#D4AF37]/20 uppercase tracking-widest">
+                                <span className="px-4 py-2 bg-[#f0f7f3] text-[#004225] text-[10px] font-black rounded-sm border border-[#004225]/10 uppercase tracking-widest">
                                     {s.grade_level}
+                                </span>
+                                <span className="px-4 py-2 bg-white text-[#D4AF37] text-[10px] font-black rounded-sm border border-[#D4AF37]/20 uppercase tracking-widest">
+                                    {s.category}
                                 </span>
                             </div>
                         </Link>

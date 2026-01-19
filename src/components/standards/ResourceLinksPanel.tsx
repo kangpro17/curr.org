@@ -3,7 +3,7 @@
 import { useState, useEffect, useMemo } from 'react';
 import { createClient } from '@/lib/supabaseClient';
 import { Database } from '@/lib/types';
-import { ExternalLink, Filter, Globe, FileText, Video, ClipboardList, Loader2, Link2 } from 'lucide-react';
+import { ExternalLink, Filter, Globe, FileText, Video, ClipboardList, Loader2, Link2, BookOpen } from 'lucide-react';
 
 type ResourceLink = Database['public']['Tables']['resource_links']['Row'];
 
@@ -101,42 +101,42 @@ export default function ResourceLinksPanel({ standardCode }: ResourceLinksPanelP
     }
 
     return (
-        <div className="space-y-10">
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-8 border-b border-[#D4AF37]/10 pb-10">
-                <div className="flex items-center gap-5">
-                    <div className="w-14 h-14 bg-[#002147] rounded-sm flex items-center justify-center border border-[#D4AF37]/30 shadow-lg">
-                        <Link2 className="h-6 w-6 text-[#D4AF37]" />
+        <div className="space-y-12">
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-10 border-b border-[#004225]/10 pb-12">
+                <div className="flex items-center gap-6">
+                    <div className="w-16 h-16 bg-[#004225] rounded-sm flex items-center justify-center border border-[#D4AF37]/30 shadow-2xl">
+                        <Link2 className="h-8 w-8 text-[#D4AF37]" />
                     </div>
                     <div>
-                        <h3 className="text-2xl font-classic text-[#002147] tracking-widest">CURATED SCHOLARSHIP</h3>
-                        <p className="text-sm text-[#002147]/50 font-serif italic">Scholarly resources assigned to this curriculum benchmark.</p>
+                        <h3 className="text-3xl font-serif font-black text-[#004225] tracking-tight">학습 자료 아카이브</h3>
+                        <p className="text-lg text-[#004225]/60 font-serif italic">해당 성취기준 달성을 위한 엄선된 교육 자료입니다.</p>
                     </div>
                 </div>
 
                 {/* Category Filter Chips */}
                 {categories.length > 0 && (
-                    <div className="flex items-center gap-4 overflow-x-auto pb-1 scrollbar-hide">
-                        <Filter className="h-4 w-4 text-[#D4AF37] shrink-0" />
-                        <div className="flex gap-2">
+                    <div className="flex items-center gap-4 overflow-x-auto pb-2 scrollbar-hide">
+                        <Filter className="h-5 w-5 text-[#004225]/40 shrink-0" />
+                        <div className="flex gap-3">
                             <button
                                 onClick={() => setActiveCategory('all')}
-                                className={`px-5 py-2.5 rounded-sm text-[10px] font-black uppercase tracking-[0.2em] transition-all shadow-sm ${activeCategory === 'all'
-                                    ? 'bg-[#002147] text-[#D4AF37] border-transparent'
-                                    : 'bg-white text-[#002147]/40 border border-[#D4AF37]/10 hover:border-[#D4AF37]'
+                                className={`px-6 py-3 rounded-sm text-[11px] font-black uppercase tracking-[0.2em] transition-all shadow-md ${activeCategory === 'all'
+                                    ? 'bg-[#004225] text-white'
+                                    : 'bg-white text-[#004225]/40 border border-[#004225]/10 hover:border-[#004225]'
                                     }`}
                             >
-                                SHOW ALL
+                                ALL RESOURCES
                             </button>
                             {categories.map(cat => (
                                 <button
                                     key={cat}
                                     onClick={() => setActiveCategory(cat)}
-                                    className={`px-5 py-2.5 rounded-sm text-[10px] font-black uppercase tracking-[0.2em] transition-all shadow-sm ${activeCategory === cat
-                                        ? 'bg-[#002147] text-[#D4AF37] border-transparent'
-                                        : 'bg-white text-[#002147]/40 border border-[#D4AF37]/10 hover:border-[#D4AF37]'
+                                    className={`px-6 py-3 rounded-sm text-[11px] font-black uppercase tracking-[0.2em] transition-all shadow-md ${activeCategory === cat
+                                        ? 'bg-[#004225] text-white'
+                                        : 'bg-white text-[#004225]/40 border border-[#004225]/10 hover:border-[#004225]'
                                         }`}
                                 >
-                                    {cat}
+                                    {cat.toUpperCase()}
                                 </button>
                             ))}
                         </div>
@@ -144,43 +144,45 @@ export default function ResourceLinksPanel({ standardCode }: ResourceLinksPanelP
                 )}
             </div>
 
-            {/* Links Cards Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {/* Links Cards Grid - Large Thumbnails */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
                 {filteredLinks.map((link) => (
                     <a
                         key={link.id}
                         href={link.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="group bg-[#FDFCF8] p-10 rounded-sm border-l-4 border-l-[#D4AF37] border-y border-r border-[#D4AF37]/10 hover:bg-[#002147] transition-all flex flex-col justify-between relative overflow-hidden shadow-sm hover:shadow-2xl"
+                        className="group relative h-[300px] rounded-lg overflow-hidden aristocratic-border transition-all hover:scale-[1.02] hover:shadow-2xl"
                     >
-                        <div className="space-y-6 relative z-10">
-                            <div className="flex justify-between items-start gap-4">
-                                <div className="space-y-4">
-                                    <div className="flex items-center gap-3">
-                                        <div className="p-2 bg-[#002147] text-[#D4AF37] rounded-xs group-hover:bg-white/10 transition-all">
-                                            {getIcon(link.category)}
-                                        </div>
-                                        <span className="text-[9px] font-black text-[#002147]/40 group-hover:text-[#D4AF37] uppercase tracking-[0.3em] font-classic">{link.category || 'GENERAL RESOURCE'}</span>
-                                    </div>
-                                    <h5 className="text-2xl font-serif font-bold text-[#002147] leading-tight group-hover:text-white transition-colors">
-                                        {link.title}
-                                    </h5>
+                        {/* Background Image / Placeholder */}
+                        <div className="absolute inset-0 british-green-gradient opacity-90 group-hover:opacity-100 transition-opacity" />
+
+                        {/* Decorative Pattern / Icon */}
+                        <div className="absolute inset-0 flex items-center justify-center opacity-10 group-hover:scale-110 transition-transform">
+                            {link.category?.includes('영상') ? <Video className="w-40 h-40 text-white" /> : <BookOpen className="w-40 h-40 text-white" />}
+                        </div>
+
+                        {/* Content Overlay */}
+                        <div className="relative h-full p-8 flex flex-col justify-end gap-4 z-10">
+                            <div className="flex items-center gap-2">
+                                <div className="p-2 bg-[#D4AF37] text-[#004225] rounded-sm">
+                                    {getIcon(link.category)}
                                 </div>
-                                <div className="w-12 h-12 border border-[#D4AF37]/20 flex items-center justify-center text-[#D4AF37] group-hover:border-white/20 group-hover:text-white transition-all">
-                                    <ExternalLink className="h-5 w-5" />
-                                </div>
+                                <span className="text-[10px] font-black text-[#D4AF37] uppercase tracking-[0.3em]">{link.category || 'Curriculum'}</span>
+                            </div>
+
+                            <h5 className="text-2xl font-serif font-bold text-white leading-tight">
+                                {link.title}
+                            </h5>
+
+                            <div className="flex justify-between items-center pt-4 border-t border-white/20">
+                                <span className="text-xs font-bold text-white/70">{link.org}</span>
+                                <ExternalLink className="h-5 w-5 text-[#D4AF37]" />
                             </div>
                         </div>
 
-                        <div className="flex flex-wrap items-center gap-3 pt-8 mt-8 border-t border-[#D4AF37]/10 group-hover:border-white/10 relative z-10">
-                            {link.org && (
-                                <span className="text-[10px] font-black text-[#D4AF37] bg-[#002147]/5 group-hover:bg-white/5 px-4 py-1.5 rounded-sm border border-[#D4AF37]/20 uppercase tracking-widest">{link.org}</span>
-                            )}
-                            {link.tags && link.tags.map(tag => (
-                                <span key={tag} className="text-[9px] font-bold text-[#002147]/30 group-hover:text-white/30 px-3 py-1 bg-white/50 group-hover:bg-white/5 rounded-sm uppercase tracking-tighter">#{tag}</span>
-                            ))}
-                        </div>
+                        {/* Hover Effect Light */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-[#004225] via-transparent to-transparent opacity-60" />
                     </a>
                 ))}
             </div>

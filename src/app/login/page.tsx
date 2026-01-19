@@ -18,6 +18,14 @@ export default function LoginPage() {
         setLoading(true);
         setError(null);
 
+        // Check for specific admin credentials
+        if (email === 'ABC' && password === '1234') {
+            router.push('/admin');
+            router.refresh();
+            setLoading(false);
+            return;
+        }
+
         try {
             const { error } = await supabase.auth.signInWithPassword({
                 email,
@@ -43,7 +51,7 @@ export default function LoginPage() {
                     <div className="w-16 h-16 bg-white rounded-3xl shadow-xl shadow-indigo-500/10 flex items-center justify-center mx-auto mb-6">
                         <ShieldCheck className="h-8 w-8 text-indigo-600" />
                     </div>
-                    <h1 className="text-3xl font-black text-gray-900 tracking-tighter">관리자 로그인</h1>
+                    <h1 className="text-3xl font-black text-[#004225] tracking-tighter">관리자 로그인</h1>
                     <p className="text-gray-400 font-medium text-sm">시스템 관리를 위해 인증이 필요합니다.</p>
                 </div>
 

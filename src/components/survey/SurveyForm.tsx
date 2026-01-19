@@ -51,16 +51,18 @@ export default function SurveyForm({ standardCode }: SurveyFormProps) {
         try {
             setStatus('submitting');
 
-            const { error } = await (supabase
-                .from('surveys') as any)
-                .insert({
+            const res = await fetch('/api/surveys', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
                     standard_code: standardCode,
                     rating,
                     helpful_tags: selectedTags,
                     comment: comment.slice(0, 300)
-                });
+                })
+            });
 
-            if (error) throw error;
+            if (!res.ok) throw new Error('제출에 실패했습니다.');
 
             setStatus('success');
         } catch (err: any) {
@@ -71,15 +73,15 @@ export default function SurveyForm({ standardCode }: SurveyFormProps) {
 
     if (status === 'success') {
         return (
-            <div className="bg-indigo-600 rounded-[2.5rem] p-12 text-white text-center animate-in fade-in zoom-in duration-500 shadow-2xl shadow-indigo-500/20">
-                <div className="w-20 h-20 bg-white/20 rounded-3xl flex items-center justify-center mx-auto mb-6">
-                    <CheckCircle2 className="h-10 w-10 text-white" />
+            <div className="bg-[#004225] rounded-xl p-16 text-white text-center animate-in fade-in zoom-in duration-500 shadow-3xl border-t-8 border-[#D4AF37]">
+                <div className="w-24 h-24 bg-white/10 rounded-xl flex items-center justify-center mx-auto mb-8 border border-white/20">
+                    <CheckCircle2 className="h-12 w-12 text-[#D4AF37]" />
                 </div>
-                <h4 className="text-3xl font-black tracking-tighter mb-2">제출되었습니다!</h4>
-                <p className="text-indigo-100/70 font-medium mb-8">소중한 의견을 남겨주셔서 감사합니다.</p>
+                <h4 className="text-4xl font-serif font-black tracking-tight mb-4">소중한 의견 감사합니다!</h4>
+                <p className="text-xl text-white/60 font-serif italic mb-10">여러분의 피드백이 더 나은 교육 환경을 만듭니다.</p>
                 <button
                     onClick={() => { setStatus('idle'); setRating(0); setSelectedTags([]); setComment(''); }}
-                    className="px-8 py-3 bg-white/10 hover:bg-white/20 rounded-2xl text-white text-sm font-black transition-all"
+                    className="px-10 py-4 bg-[#D4AF37] hover:bg-[#D4AF37]/80 rounded-lg text-[#004225] text-sm font-black transition-all shadow-2xl"
                 >
                     다른 의견 남기기
                 </button>
@@ -88,19 +90,19 @@ export default function SurveyForm({ standardCode }: SurveyFormProps) {
     }
 
     return (
-        <div className="bg-white rounded-[2.5rem] p-8 md:p-12 border border-gray-100 shadow-xl shadow-indigo-500/5 relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-64 h-64 bg-indigo-50/50 rounded-full -mr-32 -mt-32 blur-3xl" />
+        <div className="bg-white rounded-xl p-12 md:p-16 border border-[#004225]/10 shadow-3xl relative overflow-hidden aristocratic-border">
+            <div className="absolute top-0 right-0 w-80 h-80 bg-[#004225]/5 rounded-full -mr-40 -mt-40 blur-3xl" />
 
-            <form onSubmit={handleSubmit} className="relative z-10 space-y-10 group">
-                <div className="space-y-2">
-                    <h4 className="text-2xl font-black text-gray-900 tracking-tight">만족도 설문</h4>
-                    <p className="text-gray-400 font-medium text-sm">본 성취기준 정보가 도움이 되었나요? 의견을 남겨주세요.</p>
+            <form onSubmit={handleSubmit} className="relative z-10 space-y-12 group">
+                <div className="space-y-4">
+                    <h4 className="text-3xl font-serif font-black text-[#004225] tracking-tight">교육 만족도 설문</h4>
+                    <p className="text-lg text-[#004225]/60 font-serif italic">해당 성취기준 정보가 실제 수업 설계에 도움이 되었나요?</p>
                 </div>
 
                 {/* Rating - Stars */}
-                <div className="space-y-4">
-                    <label className="text-xs font-black text-gray-400 uppercase tracking-widest block">만족도 평가 (필수)</label>
-                    <div className="flex items-center gap-2">
+                <div className="space-y-6">
+                    <label className="text-xs font-black text-[#004225]/40 uppercase tracking-[0.3em] block">OVERALL SATISFACTION</label>
+                    <div className="flex items-center gap-4">
                         {[1, 2, 3, 4, 5].map((star) => (
                             <button
                                 key={star}
@@ -108,39 +110,39 @@ export default function SurveyForm({ standardCode }: SurveyFormProps) {
                                 onMouseEnter={() => setHoverRating(star)}
                                 onMouseLeave={() => setHoverRating(0)}
                                 onClick={() => setRating(star)}
-                                className="transition-transform active:scale-90 p-1"
+                                className="transition-all active:scale-95 p-1"
                             >
                                 <Star
-                                    className={`h-10 w-10 transition-all ${(hoverRating || rating) >= star
-                                        ? 'fill-yellow-400 text-yellow-400 scale-110'
-                                        : 'text-gray-100 fill-gray-100'
+                                    className={`h-12 w-12 transition-all ${(hoverRating || rating) >= star
+                                        ? 'fill-[#D4AF37] text-[#D4AF37] scale-110 drop-shadow-lg'
+                                        : 'text-[#004225]/5 fill-[#004225]/5'
                                         }`}
                                 />
                             </button>
                         ))}
                         {rating > 0 && (
-                            <span className="ml-4 text-xl font-black text-yellow-500 animate-in fade-in slide-in-from-left-2">{rating}점</span>
+                            <span className="ml-6 text-2xl font-black text-[#D4AF37] animate-in fade-in slide-in-from-left-4">{rating}점</span>
                         )}
                     </div>
                 </div>
 
                 {/* Helpful Tags - Checkboxes */}
-                <div className="space-y-4">
-                    <label className="text-xs font-black text-gray-400 uppercase tracking-widest block">무엇이 좋았나요? (다중 선택)</label>
-                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                <div className="space-y-6">
+                    <label className="text-xs font-black text-[#004225]/40 uppercase tracking-[0.3em] block">KEY STRENGTHS</label>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                         {HELPFUL_TAGS.map(tag => (
                             <button
                                 key={tag}
                                 type="button"
                                 onClick={() => toggleTag(tag)}
-                                className={`px-4 py-3 rounded-xl text-xs font-black transition-all text-left flex items-center gap-2 ${selectedTags.includes(tag)
-                                    ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-500/20 ring-1 ring-transparent'
-                                    : 'bg-gray-50 text-gray-400 border border-transparent hover:border-gray-200'
+                                className={`px-6 py-4 rounded-lg text-sm font-black transition-all text-left flex items-center gap-4 border ${selectedTags.includes(tag)
+                                    ? 'bg-[#004225] text-white border-[#004225] shadow-xl'
+                                    : 'bg-[#f0f7f3] text-[#004225]/50 border-transparent hover:border-[#004225]/20'
                                     }`}
                             >
-                                <div className={`w-4 h-4 rounded-md border flex items-center justify-center transition-all ${selectedTags.includes(tag) ? 'bg-white border-white text-indigo-600' : 'bg-white border-gray-200 text-transparent'
+                                <div className={`w-5 h-5 rounded-md border flex items-center justify-center transition-all ${selectedTags.includes(tag) ? 'bg-[#D4AF37] border-[#D4AF37] text-[#004225]' : 'bg-white border-[#004225]/10 text-transparent'
                                     }`}>
-                                    <CheckCircle2 className="h-3 w-3 fill-current" />
+                                    <CheckCircle2 className="h-4 w-4 fill-current" />
                                 </div>
                                 {tag}
                             </button>
@@ -149,25 +151,25 @@ export default function SurveyForm({ standardCode }: SurveyFormProps) {
                 </div>
 
                 {/* Comment Area */}
-                <div className="space-y-4">
+                <div className="space-y-6">
                     <div className="flex justify-between items-end">
-                        <label className="text-xs font-black text-gray-400 uppercase tracking-widest">기타 의견 (선택)</label>
-                        <span className={`text-[10px] font-bold transition-colors ${comment.length > 300 ? 'text-red-500' : 'text-gray-300'}`}>
+                        <label className="text-xs font-black text-[#004225]/40 uppercase tracking-[0.3em]">ADDITIONAL COMMENTARY</label>
+                        <span className={`text-[10px] font-black tracking-widest ${comment.length > 300 ? 'text-red-500' : 'text-[#004225]/20'}`}>
                             {comment.length} / 300
                         </span>
                     </div>
                     <textarea
                         value={comment}
                         onChange={(e) => setComment(e.target.value)}
-                        placeholder="전공 혹은 학습에 도움이 된 부분이나 보안할 점을 자유롭게 적어주세요."
-                        className="w-full h-32 p-6 bg-gray-50 rounded-[1.5rem] border border-transparent focus:border-indigo-100 focus:bg-white outline-none text-sm font-medium transition-all resize-none shadow-inner"
+                        placeholder="전공 혹은 학습에 도움이 된 부분이나 보완할 점을 자유롭게 기록해 주세요."
+                        className="w-full h-40 p-8 bg-[#f0f7f3] rounded-xl border border-transparent focus:border-[#004225]/20 focus:bg-white outline-none text-base font-serif transition-all resize-none shadow-inner"
                     />
                 </div>
 
                 {/* Status UI */}
                 {status === 'error' && (
-                    <div className="flex items-center gap-3 p-5 bg-red-50 rounded-2xl text-red-500 text-sm font-bold animate-in fade-in slide-in-from-top-2 border border-red-100">
-                        <AlertCircle className="h-5 w-5 shrink-0" />
+                    <div className="flex items-center gap-4 p-6 bg-red-50 rounded-xl text-red-600 text-sm font-black animate-in fade-in slide-in-from-top-4 border border-red-100 uppercase tracking-widest">
+                        <AlertCircle className="h-6 w-6 shrink-0" />
                         {errorMessage}
                     </div>
                 )}
@@ -176,14 +178,14 @@ export default function SurveyForm({ standardCode }: SurveyFormProps) {
                 <button
                     type="submit"
                     disabled={status === 'submitting'}
-                    className="group w-full h-16 bg-gray-900 text-white rounded-[1.5rem] font-black hover:bg-black hover:scale-[1.02] active:scale-[0.98] transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-3 shadow-xl shadow-gray-900/10"
+                    className="group w-full h-20 bg-[#004225] text-white rounded-xl font-black hover:bg-black hover:scale-[1.01] active:scale-[0.99] transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-4 shadow-3xl text-lg uppercase tracking-[0.2em]"
                 >
                     {status === 'submitting' ? (
-                        <Loader2 className="h-6 w-6 animate-spin" />
+                        <Loader2 className="h-8 w-8 animate-spin" />
                     ) : (
                         <>
-                            <Send className="h-5 w-5 transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-                            설문 제출하기
+                            <Send className="h-6 w-6 transform group-hover:translate-x-2 group-hover:-translate-y-2 transition-transform text-[#D4AF37]" />
+                            학습 환류 제출하기
                         </>
                     )}
                 </button>
