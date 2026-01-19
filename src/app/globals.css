@@ -1,21 +1,36 @@
 @import "tailwindcss";
 
 :root {
-  --background: #F8F9FA;
-  /* Light Grey Background */
-  --foreground: #2D3748;
+  --background: #FEFEFE;
+  /* Pure White Background */
+  --foreground: #1A202C;
   /* Dark Grey Text */
 
-  /* Cute & Chunky Korean Theme - Purple & Yellow */
-  --purple-start: #6A11CB;
-  --purple-end: #2575FC;
-  --yellow-accent: #FFD700;
-  --yellow-light: #FFF4CC;
-  --pink-soft: #F3E8FF;
+  /* Bright & Vibrant Korean Theme - Colorful Gradients */
+  --purple-start: #A78BFA;
+  /* Bright Purple */
+  --purple-end: #EC4899;
+  /* Hot Pink */
+  --blue-start: #60A5FA;
+  /* Sky Blue */
+  --blue-end: #3B82F6;
+  /* Bright Blue */
+  --yellow-accent: #FBBF24;
+  /* Bright Yellow */
+  --yellow-light: #FEF3C7;
+  /* Pale Yellow */
+  --pink-soft: #FCE7F3;
+  /* Soft Pink */
+  --green-soft: #D1FAE5;
+  /* Soft Green */
+  --blue-soft: #DBEAFE;
+  /* Soft Blue */
+  --purple-soft: #EDE9FE;
+  /* Soft Purple */
   --card-bg: #FFFFFF;
-  --text-primary: #2D3748;
-  --text-secondary: #718096;
-  --border-light: #E2E8F0;
+  --text-primary: #1F2937;
+  --text-secondary: #6B7280;
+  --border-light: #F3F4F6;
 }
 
 @theme inline {
@@ -30,7 +45,7 @@
 }
 
 body {
-  background: var(--background);
+  background: linear-gradient(135deg, #FEFEFE 0%, #F9FAFB 100%);
   color: var(--foreground);
   font-family: var(--font-sans);
   font-size: 1rem;
@@ -67,8 +82,9 @@ h3 {
 /* Cute & Chunky Utilities */
 .chunky-card {
   border-radius: 24px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
   background: var(--card-bg);
+  border: 2px solid #F3F4F6;
 }
 
 .chunky-button {
@@ -81,24 +97,44 @@ h3 {
 
 .chunky-button:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
 }
 
 .purple-gradient {
   background: linear-gradient(135deg, var(--purple-start) 0%, var(--purple-end) 100%);
 }
 
+.blue-gradient {
+  background: linear-gradient(135deg, var(--blue-start) 0%, var(--blue-end) 100%);
+}
+
+.rainbow-gradient {
+  background: linear-gradient(135deg, #A78BFA 0%, #60A5FA 25%, #34D399 50%, #FBBF24 75%, #EC4899 100%);
+}
+
 .yellow-button {
   background: var(--yellow-accent);
-  color: var(--text-primary);
+  color: #1F2937;
 }
 
 .yellow-button:hover {
-  background: #FFC700;
+  background: #F59E0B;
 }
 
 .pink-bg {
   background: var(--pink-soft);
+}
+
+.green-bg {
+  background: var(--green-soft);
+}
+
+.blue-bg {
+  background: var(--blue-soft);
+}
+
+.purple-bg {
+  background: var(--purple-soft);
 }
 
 /* Large Border Radius for Everything */
@@ -132,8 +168,8 @@ button {
 
 /* Remove old aristocratic styles */
 .aristocratic-border {
-  border: 1px solid var(--border-light);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  border: 2px solid var(--border-light);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
   border-radius: 24px;
 }
 
@@ -142,7 +178,7 @@ button {
 }
 
 .gold-gradient-text {
-  background-image: linear-gradient(to right, var(--yellow-accent), #FFE55C, var(--yellow-accent));
+  background-image: linear-gradient(to right, var(--yellow-accent), #FCD34D, var(--yellow-accent));
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
